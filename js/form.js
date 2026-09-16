@@ -1,26 +1,3 @@
-const contactForm = document.getElementById('contactForm');
-const formMessage = document.getElementById('formMessage');
-
-function showFormMessage(message, success = false) {
-  formMessage.textContent = message;
-  formMessage.className = `form-message ${success ? 'success' : 'error'}`;
-}
-
-contactForm.addEventListener('submit', event => {
-  event.preventDefault();
-
-  const name = document.getElementById('name').value.trim();
-  const email = document.getElementById('email').value.trim();
-  const phone = document.getElementById('phone').value.trim();
-  const message = document.getElementById('message').value.trim();
-  const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-  const phonePattern = /^(0|\+84)[0-9]{9,10}$/;
-
-  if (!name || !email || !phone || !message) return showFormMessage('Vui lòng nhập đầy đủ thông tin.');
-  if (!emailPattern.test(email)) return showFormMessage('Email không đúng định dạng.');
-  if (!phonePattern.test(phone.replace(/\s/g, ''))) return showFormMessage('Số điện thoại không đúng định dạng.');
-  if (message.length < 10) return showFormMessage('Nội dung cần ít nhất 10 ký tự.');
-
-  showFormMessage('Gửi liên hệ thành công! Cảm ơn bạn đã liên hệ.', true);
-  contactForm.reset();
-});
+const contactForm=document.getElementById('contactForm');const formMessage=document.getElementById('formMessage');
+function setError(id,message){const input=document.getElementById(id);const error=document.getElementById(`${id}Error`);if(error)error.textContent=message;if(input)input.setAttribute('aria-invalid',message?'true':'false')}
+contactForm.addEventListener('submit',event=>{event.preventDefault();const name=document.getElementById('name').value.trim();const email=document.getElementById('email').value.trim();const phone=document.getElementById('phone').value.trim();const message=document.getElementById('message').value.trim();const emailPattern=/^[^\s@]+@[^\s@]+\.[^\s@]+$/;const phonePattern=/^(0|\+84)[0-9]{9,10}$/;['name','email','phone','message'].forEach(id=>setError(id,''));formMessage.textContent='';if(!name)return setError('name','Vui lòng nhập họ và tên.');if(name.length<2)return setError('name','Họ tên cần ít nhất 2 ký tự.');if(!email)return setError('email','Vui lòng nhập email.');if(!emailPattern.test(email))return setError('email','Email không đúng định dạng.');if(!phone)return setError('phone','Vui lòng nhập số điện thoại.');if(!phonePattern.test(phone.replace(/\s/g,'')))return setError('phone','Số điện thoại không đúng định dạng.');if(!message)return setError('message','Vui lòng nhập nội dung.');if(message.length<10)return setError('message','Nội dung cần ít nhất 10 ký tự.');formMessage.textContent='✓ Gửi liên hệ thành công! Cảm ơn bạn đã liên hệ BurgerBox.';formMessage.className='form-message success';contactForm.reset();setTimeout(()=>{formMessage.textContent=''},3500)});
