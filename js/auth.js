@@ -7,3 +7,5 @@ function login(email,password){const user=getUsers().find(u=>u.email.toLowerCase
 function logout(){localStorage.removeItem(SESSION_KEY);location.href='login.html'}
 function requireAuth(role){const s=getSession();if(!s){location.href='login.html';return null}if(role&&s.role!==role){location.href='index.html';return null}return s}
 function registerUser(name,email,password){const users=getUsers();if(users.some(u=>u.email.toLowerCase()===email.trim().toLowerCase()))return{ok:false,message:'Email đã được sử dụng.'};users.push({id:Date.now(),name:name.trim(),email:email.trim(),password,status:'active',role:'customer',createdAt:new Date().toISOString().slice(0,10)});saveUsers(users);return{ok:true}}
+function isLoggedIn(){return !!getSession()}
+function getCurrentUser(){return getSession()}
