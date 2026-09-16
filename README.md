@@ -1,112 +1,170 @@
-# 🍔 BurgerBox — Lập trình cơ sở với JavaScript
+# 🍔 BurgerBox — Fast Food & Delivery
 
-Website bán đồ ăn nhanh xây dựng bằng **HTML5 + CSS3 + Vanilla JavaScript**, phát triển theo Assignment **LẬP TRÌNH CƠ SỞ VỚI JAVASCRIPT**.
+Website bán đồ ăn nhanh xây dựng bằng **HTML5 + CSS3 + Vanilla JavaScript (ES6+)**, bám sát Assignment **LẬP TRÌNH CƠ SỞ VỚI JAVASCRIPT** và mở rộng thành một mini e-commerce có tài khoản và khu vực quản trị.
 
-## 1. Mục tiêu
-Assignment yêu cầu thiết kế website bán hàng bằng JavaScript thuần, giới thiệu sản phẩm, cung cấp thông tin và cho phép người dùng đặt hàng trực tuyến. Dự án này chọn mô hình **Fast Food / Delivery** để triển khai các yêu cầu Y1, Y2 và làm nền cho báo cáo Y3.
+## 1. Mục tiêu dự án
+- Website bán hàng bằng JavaScript thuần.
+- Giao diện fast food chuyên nghiệp, responsive.
+- Có danh mục, tìm kiếm, sắp xếp, slider, form validation và giỏ hàng.
+- Có đăng ký/đăng nhập và phân quyền `customer` / `admin`.
+- Có Admin Dashboard quản lý các dữ liệu chính của cửa hàng.
+- Dữ liệu demo được lưu bằng LocalStorage để phù hợp phạm vi bài JavaScript cơ sở.
 
 ## 2. Công nghệ
-- HTML5
-- CSS3
-- Vanilla JavaScript (ES6+)
-- LocalStorage
-- Google Fonts
-- Ảnh minh họa từ Unsplash
-- Không dùng framework JavaScript
+HTML5 • CSS3 • Vanilla JavaScript • ES6+ • LocalStorage • Google Fonts • Unsplash.
 
-## 3. Cấu trúc mã nguồn
+> Đây là mô hình frontend/demo phục vụ ASM. Authentication và dữ liệu LocalStorage **không phải cơ chế bảo mật production**; hệ thống thực tế cần backend, database, hash mật khẩu và API xác thực.
+
+## 3. Cấu trúc project
 ```text
 BurgerBox/
-├── index.html
+├── index.html              # Trang khách hàng
+├── login.html              # Đăng nhập
+├── register.html           # Đăng ký
+├── admin.html              # Admin Dashboard
 ├── README.md
+│
 ├── css/
-│   └── style.css
+│   ├── style.css           # Storefront
+│   ├── auth.css            # Login/Register
+│   └── admin.css           # Admin panel
+│
 └── js/
-    ├── data.js       # Dữ liệu sản phẩm, format giá
-    ├── app.js        # Render, tìm kiếm, lọc, sắp xếp, yêu thích, quick view
-    ├── slider.js     # Slider động + countdown
-    ├── cart.js       # Giỏ hàng + LocalStorage + checkout
-    └── form.js       # Validation form liên hệ
+    ├── data.js             # Product data + persistence
+    ├── app.js              # Render/search/filter/sort/favorite/quick view
+    ├── slider.js            # Slider + countdown
+    ├── cart.js              # Cart + checkout + order creation
+    ├── form.js              # Contact validation
+    ├── auth.js              # Account/session/role
+    └── admin.js             # Dashboard + CRUD/admin modules
 ```
 
-## 4. Đối chiếu yêu cầu ASM
+## 4. Chức năng khách hàng
+- 12 món fast food dạng Array of Objects.
+- Burger, Gà rán, Ăn kèm, Đồ uống, Combo.
+- Nhóm Món mới / Bán chạy / Giảm giá.
+- Tìm kiếm theo tên.
+- Lọc theo danh mục.
+- Sắp xếp theo giá và tên.
+- Hover/zoom sản phẩm.
+- Quick View.
+- Món yêu thích lưu LocalStorage.
+- Slider 3 banner với Previous / Next / Dot / Auto Play.
+- Flash Sale Countdown.
+- Giỏ hàng thêm/xóa/tăng/giảm.
+- Tính tổng tiền.
+- LocalStorage giữ giỏ hàng khi reload.
+- Checkout: họ tên, số điện thoại, địa chỉ, thanh toán.
+- Checkout tạo đơn hàng để Admin quản lý.
+- Form liên hệ có validation rỗng, email, số điện thoại và nội dung.
 
-### Y1 — Yêu cầu chức năng
+## 5. Đăng nhập & tài khoản
+### Admin demo
+- Email: `admin@burgerbox.local`
+- Mật khẩu: `admin123`
 
-**1. Khởi tạo & chạy giao diện**
-- Giao diện responsive, không cần framework JS.
-- Object và array dữ liệu được khai báo trong `data.js`.
-- Có các hàm render, event và logic xử lý trong các file JS.
+### Customer demo
+- Email: `user@burgerbox.local`
+- Mật khẩu: `123456`
 
-**2. Quản lý & hiển thị dữ liệu sản phẩm**
-- 12 sản phẩm dạng array of objects.
-- Có đủ 3 nhóm: **Món mới / Bán chạy / Giảm giá**.
-- Mỗi sản phẩm có tên, giá, hình ảnh và nút thêm giỏ / xem chi tiết.
-- Có 5 danh mục: Burger, Gà rán, Ăn kèm, Đồ uống, Combo.
-- Có hover/zoom ảnh và highlight card.
+Người dùng mới có thể đăng ký bằng `register.html`. Session được lưu ở LocalStorage và Admin Dashboard yêu cầu role `admin`.
 
-**3. Slider/Banner**
-- 3 banner động.
-- Có Previous, Next và Dot.
-- Tự động chuyển slide bằng JavaScript.
-- Không phải slider tĩnh.
+## 6. Admin Dashboard
+Admin có các module:
 
-**4. Form & kiểm tra dữ liệu**
-- Form liên hệ gồm họ tên, email, số điện thoại và nội dung.
-- Kiểm tra rỗng.
-- Kiểm tra email bằng Regular Expression.
-- Kiểm tra số điện thoại bằng Regular Expression.
-- Hiển thị lỗi ngay dưới trường dữ liệu.
+### 📊 Tổng quan
+- Doanh thu demo.
+- Tổng đơn hàng.
+- Tổng khách hàng.
+- Tổng sản phẩm.
+- Biểu đồ doanh thu 7 ngày dạng trực quan.
+- Đơn hàng gần đây.
+- Nút quản trị nhanh.
 
-**5. Giỏ hàng & lưu trữ dữ liệu**
+### 🍔 Sản phẩm
+- Xem danh sách.
+- Tìm kiếm.
+- Lọc theo nhóm.
 - Thêm sản phẩm.
+- Sửa tên/giá.
 - Xóa sản phẩm.
-- Tăng/giảm số lượng.
-- Tính tổng tiền và tổng số lượng.
-- Lưu bằng LocalStorage.
-- Reload trang vẫn giữ giỏ hàng.
-- Có form checkout demo để hoàn thiện luồng đặt hàng.
+- Dữ liệu cập nhật được lưu LocalStorage.
 
-**6. Chức năng nâng cao**
-- Chọn **Countdown Clock**: Flash Sale tự đếm ngược bằng JavaScript.
+### 📁 Danh mục
+- Xem số sản phẩm theo danh mục.
+- Thêm danh mục.
+- Đổi tên danh mục.
+- Xóa danh mục.
 
-**7. Ba yêu cầu tự đề xuất**
-1. **Tìm kiếm & sắp xếp sản phẩm** — giúp khách hàng tìm món nhanh và so sánh giá thuận tiện.
-2. **Món yêu thích** — cho phép đánh dấu món và lưu danh sách bằng LocalStorage, giúp quay lại chọn món nhanh hơn.
-3. **Xem nhanh sản phẩm (Quick View) + checkout** — xem thông tin món trong modal và chuyển trực tiếp sang quy trình nhập thông tin nhận hàng.
+### 🧾 Đơn hàng
+- Xem mã đơn, khách hàng, số món, tổng tiền, ngày.
+- Cập nhật trạng thái:
+  - Chờ xác nhận
+  - Đang chuẩn bị
+  - Đang giao
+  - Hoàn thành
+  - Đã hủy
+- Đơn tạo từ checkout được đưa vào hệ thống quản trị.
 
-> Ba chức năng trên đều được triển khai bằng JavaScript, không chỉ mô tả trên giao diện.
+### 👥 Khách hàng
+- Xem tài khoản.
+- Xem vai trò/trạng thái.
+- Khóa/mở khóa tài khoản customer.
 
-### Y2 — Tổ chức mã
-- File JavaScript nằm trong thư mục `js`.
-- File CSS nằm trong thư mục `css`.
-- File HTML nằm cùng cấp với hai thư mục trên.
+### 🎟️ Mã giảm giá
+- Xem coupon.
+- Tạo mã giảm giá.
+- Xóa mã.
+- Trạng thái sử dụng.
 
-### Y3 — Báo cáo
-Báo cáo cần trình bày phân tích chức năng, giao diện, cấu trúc mã và các thư viện/công cụ đã sử dụng. Có thể dùng chính cấu trúc và chức năng của project này làm cơ sở viết báo cáo.
+### ⭐ Đánh giá
+- Xem đánh giá demo.
+- Ẩn/hiển thị đánh giá.
+- Xóa đánh giá.
 
-## 5. Cách chạy
-1. Clone repository về máy.
-2. Mở thư mục bằng Visual Studio Code.
-3. Cài extension **Live Server** nếu muốn chạy local server.
-4. Mở `index.html` bằng Live Server.
-5. Kiểm tra Console trình duyệt nếu cần debug JavaScript.
+### ⚙️ Cài đặt
+- Tên cửa hàng.
+- Phí giao hàng.
+- Trạng thái mở/đóng cửa hàng.
+- Thông tin hệ thống.
 
-## 6. Checklist demo trước khi nộp
-- [ ] Trang chủ hiển thị đúng.
-- [ ] Slider tự động và nút điều khiển hoạt động.
-- [ ] Tìm kiếm hoạt động.
-- [ ] Lọc danh mục hoạt động.
-- [ ] Sắp xếp giá/tên hoạt động.
-- [ ] Card sản phẩm có hover/zoom.
-- [ ] Xem chi tiết hoạt động.
-- [ ] Thêm/xóa/tăng/giảm giỏ hàng hoạt động.
-- [ ] Reload vẫn giữ giỏ hàng.
-- [ ] Món yêu thích được lưu.
+## 7. Đối chiếu ASM
+Project vẫn giữ trọng tâm của ASM:
+- Array of Objects.
+- Hiển thị sản phẩm và danh mục.
+- Hiệu ứng hover/highlight.
+- Slider động bằng JavaScript.
+- Form validation.
+- Giỏ hàng CRUD cơ bản.
+- LocalStorage.
+- Countdown Clock.
+- Ít nhất 3 yêu cầu tự đề xuất.
+- JavaScript trong `js`, CSS trong `css`, HTML cùng cấp.
+
+Phần đăng nhập và Admin là **phần mở rộng hợp lý** của mô hình website bán hàng, không thay thế các yêu cầu Y1/Y2 của ASM.
+
+## 8. Chạy project
+1. Clone repository.
+2. Mở bằng Visual Studio Code.
+3. Chạy `index.html` bằng Live Server.
+4. Vào `login.html` để đăng nhập.
+5. Dùng tài khoản admin để vào `admin.html`.
+
+## 9. Checklist trước khi demo/nộp
+- [ ] Trang chủ responsive.
+- [ ] Slider hoạt động.
 - [ ] Countdown hoạt động.
-- [ ] Form liên hệ kiểm tra dữ liệu.
-- [ ] Checkout kiểm tra họ tên, số điện thoại, địa chỉ.
-- [ ] Không có lỗi JavaScript trong Console.
+- [ ] Tìm kiếm/lọc/sắp xếp hoạt động.
+- [ ] Quick View hoạt động.
+- [ ] Favorite lưu LocalStorage.
+- [ ] Cart thêm/xóa/tăng/giảm.
+- [ ] Reload giữ cart.
+- [ ] Checkout tạo order.
+- [ ] Form validation hoạt động.
+- [ ] Đăng ký/đăng nhập hoạt động.
+- [ ] Admin phân quyền hoạt động.
+- [ ] Admin quản lý sản phẩm/danh mục/đơn hàng/khách hàng/coupon/review/settings.
+- [ ] Kiểm tra Console không có lỗi.
 
-## 7. Lưu ý khi đóng gói nộp LMS
-Theo ASM, sản phẩm gồm **folder chứa mã nguồn website** và **file tài liệu Y3**; sau đó đóng gói thành file ZIP theo mẫu tên do assignment quy định. Mã SV và họ tên sinh viên cần được bổ sung vào tài liệu/nội dung đóng gói khi có thông tin chính xác.
+## 10. Phạm vi kỹ thuật
+Để đúng tinh thần JavaScript cơ sở, project không dùng backend/framework JS. Các chức năng tài khoản, dữ liệu và admin đều là **frontend simulation bằng LocalStorage**. Nếu triển khai thực tế, kiến trúc nên chuyển sang frontend + REST API + database + authentication server.
