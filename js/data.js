@@ -1,17 +1,17 @@
 const products = [
-  { id: 1, name: 'Táo Fuji Nhật Bản', price: 89000, oldPrice: 109000, category: 'Trái cây', group: 'new', image: 'https://images.unsplash.com/photo-1560806887-1e4cd0b6cbd6?auto=format&fit=crop&w=700&q=80' },
-  { id: 2, name: 'Dâu tây Đà Lạt', price: 125000, oldPrice: 149000, category: 'Trái cây', group: 'hot', image: 'https://images.unsplash.com/photo-1464965911861-746a04b4bca6?auto=format&fit=crop&w=700&q=80' },
-  { id: 3, name: 'Cam mọng nước', price: 65000, oldPrice: 79000, category: 'Trái cây', group: 'sale', image: 'https://images.unsplash.com/photo-1582979512210-99b6a53386f9?auto=format&fit=crop&w=700&q=80' },
-  { id: 4, name: 'Cà chua hữu cơ', price: 48000, oldPrice: 55000, category: 'Rau củ', group: 'new', image: 'https://images.unsplash.com/photo-1546094096-0df4bcaaa337?auto=format&fit=crop&w=700&q=80' },
-  { id: 5, name: 'Bông cải xanh', price: 52000, oldPrice: 62000, category: 'Rau củ', group: 'hot', image: 'https://images.unsplash.com/photo-1459411621453-7b03977f4bfc?auto=format&fit=crop&w=700&q=80' },
-  { id: 6, name: 'Sữa tươi nguyên chất', price: 39000, oldPrice: 45000, category: 'Đồ uống', group: 'sale', image: 'https://images.unsplash.com/photo-1550583724-b2692b85b150?auto=format&fit=crop&w=700&q=80' },
-  { id: 7, name: 'Nước ép cam tươi', price: 45000, oldPrice: 55000, category: 'Đồ uống', group: 'hot', image: 'https://images.unsplash.com/photo-1600271886742-f049cd451bba?auto=format&fit=crop&w=700&q=80' },
-  { id: 8, name: 'Bánh mì nguyên cám', price: 35000, oldPrice: 42000, category: 'Thực phẩm', group: 'new', image: 'https://images.unsplash.com/photo-1509440159596-0249088772ff?auto=format&fit=crop&w=700&q=80' },
-  { id: 9, name: 'Mật ong nguyên chất', price: 119000, oldPrice: 139000, category: 'Thực phẩm', group: 'sale', image: 'https://images.unsplash.com/photo-1587049352846-4a222e784d38?auto=format&fit=crop&w=700&q=80' }
+  {id:1,name:'Burger Bò Phô Mai',price:59000,oldPrice:69000,category:'Burger',group:'hot',rating:4.9,description:'Bò nướng mềm, phô mai tan chảy, sốt đặc biệt.',image:'https://images.unsplash.com/photo-1568901346375-23c9450c58cd?auto=format&fit=crop&w=800&q=85'},
+  {id:2,name:'Burger Gà Giòn Cay',price:49000,oldPrice:59000,category:'Burger',group:'new',rating:4.8,description:'Gà giòn rụm cùng sốt cay vừa vị, cực bắt miệng.',image:'https://images.unsplash.com/photo-1606755962773-d324e0a13086?auto=format&fit=crop&w=800&q=85'},
+  {id:3,name:'Burger Double Cheese',price:79000,oldPrice:99000,category:'Burger',group:'sale',rating:5.0,description:'Hai lớp bò cùng hai lớp phô mai cho tín đồ đậm vị.',image:'https://images.unsplash.com/photo-1572802419224-296b0aeee0d9?auto=format&fit=crop&w=800&q=85'},
+  {id:4,name:'Gà Rán Giòn Cay',price:69000,oldPrice:79000,category:'Gà rán',group:'hot',rating:4.9,description:'Lớp da vàng giòn, thịt mềm mọng và cay nhẹ.',image:'https://images.unsplash.com/photo-1626082927389-6cd097cdc6ec?auto=format&fit=crop&w=800&q=85'},
+  {id:5,name:'Gà Rán Truyền Thống',price:65000,oldPrice:75000,category:'Gà rán',group:'new',rating:4.7,description:'Công thức truyền thống, thơm giòn, dễ ăn.',image:'https://images.unsplash.com/photo-1562967914-608f82629710?auto=format&fit=crop&w=800&q=85'},
+  {id:6,name:'Cánh Gà BBQ',price:72000,oldPrice:85000,category:'Gà rán',group:'sale',rating:4.8,description:'Cánh gà phủ sốt BBQ đậm đà, thơm khói.',image:'https://images.unsplash.com/photo-1527477396000-e27163b481c2?auto=format&fit=crop&w=800&q=85'},
+  {id:7,name:'Khoai Tây Chiên',price:29000,oldPrice:35000,category:'Ăn kèm',group:'hot',rating:4.8,description:'Khoai vàng giòn bên ngoài, mềm thơm bên trong.',image:'https://images.unsplash.com/photo-1573080496219-bb080dd4f877?auto=format&fit=crop&w=800&q=85'},
+  {id:8,name:'Phô Mai Que',price:39000,oldPrice:49000,category:'Ăn kèm',group:'new',rating:4.7,description:'Phô mai kéo sợi, vỏ giòn nóng hổi.',image:'https://images.unsplash.com/photo-1548340748-6d98a2e5b8f7?auto=format&fit=crop&w=800&q=85'},
+  {id:9,name:'Nước Ngọt Có Gas',price:19000,oldPrice:25000,category:'Đồ uống',group:'sale',rating:4.6,description:'Mát lạnh, sảng khoái — lựa chọn hoàn hảo cho combo.',image:'https://images.unsplash.com/photo-1581006852262-e4307cf6283a?auto=format&fit=crop&w=800&q=85'},
+  {id:10,name:'Trà Đào Cam Sả',price:35000,oldPrice:42000,category:'Đồ uống',group:'hot',rating:4.9,description:'Trà đào thơm dịu, cam tươi và hương sả nhẹ.',image:'https://images.unsplash.com/photo-1556679343-c7306c1976bc?auto=format&fit=crop&w=800&q=85'},
+  {id:11,name:'Combo Solo',price:89000,oldPrice:109000,category:'Combo',group:'sale',rating:4.9,description:'Burger bò + khoai tây + nước ngọt cho một người.',image:'https://images.unsplash.com/photo-1550547660-d9450f859349?auto=format&fit=crop&w=800&q=85'},
+  {id:12,name:'Combo Couple',price:159000,oldPrice:189000,category:'Combo',group:'hot',rating:5.0,description:'2 burger + khoai lớn + 2 nước — ăn cùng người thương.',image:'https://images.unsplash.com/photo-1586190848861-99aa4a171e90?auto=format&fit=crop&w=800&q=85'}
 ];
 
-const groupLabels = { new: 'Mới', hot: 'Hot', sale: 'Khuyến mãi' };
-
-function formatPrice(value) {
-  return new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(value);
-}
+const groupLabels={new:'Món mới',hot:'Bán chạy',sale:'Giảm giá'};
+function formatPrice(value){return new Intl.NumberFormat('vi-VN',{style:'currency',currency:'VND'}).format(value)}
