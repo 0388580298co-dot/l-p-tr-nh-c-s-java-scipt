@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FreshMart - Cửa hàng trực tuyến</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <header class="header">
+    <div class="container nav">
+      <a class="logo" href="#home">Fresh<span>Mart</span></a>
+      <nav>
+        <a href="#home">Trang chủ</a>
+        <a href="#products">Sản phẩm</a>
+        <a href="#contact">Liên hệ</a>
+      </nav>
+      <button class="cart-button" id="cartButton">🛒 Giỏ hàng <b id="cartCount">0</b></button>
+    </div>
+  </header>
+
+  <main>
+    <section id="home" class="hero">
+      <div class="slider" id="slider">
+        <div class="slide active"><div><p class="eyebrow">FRESH EVERY DAY</p><h1>Thực phẩm tươi ngon<br>cho cuộc sống khỏe mạnh</h1><a href="#products" class="btn">Mua ngay</a></div></div>
+        <div class="slide"><div><p class="eyebrow">FLASH SALE</p><h1>Ưu đãi hấp dẫn<br>hôm nay</h1><a href="#sale" class="btn">Xem khuyến mãi</a></div></div>
+        <div class="slide"><div><p class="eyebrow">QUALITY FIRST</p><h1>Chọn sản phẩm tốt<br>cho gia đình bạn</h1><a href="#contact" class="btn">Liên hệ</a></div></div>
+        <button class="slider-control prev" id="prevSlide">‹</button>
+        <button class="slider-control next" id="nextSlide">›</button>
+        <div class="dots" id="sliderDots"></div>
+      </div>
+    </section>
+
+    <section class="sale-bar" id="sale">
+      <div><strong>⚡ FLASH SALE</strong><span>Ưu đãi có hạn – nhanh tay đặt hàng!</span></div>
+      <div class="countdown" id="countdown">00:00:00</div>
+    </section>
+
+    <section id="products" class="section container">
+      <div class="section-heading"><div><p class="eyebrow">OUR PRODUCTS</p><h2>Sản phẩm nổi bật</h2></div></div>
+      <div class="toolbar">
+        <input id="searchInput" type="search" placeholder="🔎 Tìm kiếm sản phẩm...">
+        <select id="categoryFilter"><option value="all">Tất cả danh mục</option></select>
+      </div>
+      <div id="categoryTabs" class="category-tabs"></div>
+      <div id="productGrid" class="product-grid"></div>
+      <p id="emptyMessage" class="empty hidden">Không tìm thấy sản phẩm phù hợp.</p>
+    </section>
+
+    <section class="section benefits">
+      <div class="container benefits-grid">
+        <div><span>🚚</span><h3>Giao hàng nhanh</h3><p>Đặt hàng thuận tiện, giao tận nơi.</p></div>
+        <div><span>✓</span><h3>Sản phẩm chất lượng</h3><p>Thông tin sản phẩm rõ ràng.</p></div>
+        <div><span>🔒</span><h3>Thanh toán an toàn</h3><p>Bảo vệ thông tin khách hàng.</p></div>
+      </div>
+    </section>
+
+    <section id="contact" class="section container contact-section">
+      <div><p class="eyebrow">CONTACT</p><h2>Liên hệ với FreshMart</h2><p>Gửi thông tin để chúng tôi hỗ trợ bạn.</p></div>
+      <form id="contactForm" novalidate>
+        <label>Họ và tên<input id="name" type="text" placeholder="Nguyễn Văn A"></label>
+        <label>Email<input id="email" type="email" placeholder="example@email.com"></label>
+        <label>Số điện thoại<input id="phone" type="tel" placeholder="0901234567"></label>
+        <label>Nội dung<textarea id="message" rows="4" placeholder="Nhập nội dung..."></textarea></label>
+        <button class="btn" type="submit">Gửi liên hệ</button>
+        <p id="formMessage" class="form-message"></p>
+      </form>
+    </section>
+  </main>
+
+  <div class="modal hidden" id="cartModal">
+    <div class="modal-card">
+      <div class="modal-head"><h2>Giỏ hàng</h2><button id="closeCart">×</button></div>
+      <div id="cartItems"></div>
+      <div class="cart-total"><span>Tổng cộng</span><strong id="cartTotal">0 ₫</strong></div>
+      <button class="btn full" id="checkoutButton">Đặt hàng</button>
+    </div>
+  </div>
+
+  <footer><div class="container"><strong>FreshMart</strong><p>Website bán hàng – Assignment Lập trình cơ sở với JavaScript.</p></div></footer>
+
+  <script src="js/data.js"></script>
+  <script src="js/slider.js"></script>
+  <script src="js/cart.js"></script>
+  <script src="js/form.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>
