@@ -1,68 +1,10 @@
-const productGrid = document.getElementById('productGrid');
-const searchInput = document.getElementById('searchInput');
-const categoryFilter = document.getElementById('categoryFilter');
-const categoryTabs = document.getElementById('categoryTabs');
-const emptyMessage = document.getElementById('emptyMessage');
+const productGrid=document.getElementById('productGrid');const searchInput=document.getElementById('searchInput');const categoryFilter=document.getElementById('categoryFilter');const categoryTabs=document.getElementById('categoryTabs');const sortFilter=document.getElementById('sortFilter');const emptyMessage=document.getElementById('emptyMessage');const resultCount=document.getElementById('resultCount');const detailModal=document.getElementById('detailModal');const detailContent=document.getElementById('detailContent');const favoriteCount=document.getElementById('favoriteCount');let selectedCategory='all';let favorites=JSON.parse(localStorage.getItem('burgerbox-favorites'))||[];
 
-let selectedCategory = 'all';
-
-function initCategories() {
-  const categories = [...new Set(products.map(product => product.category))];
-  categories.forEach(category => {
-    categoryFilter.insertAdjacentHTML('beforeend', `<option value="${category}">${category}</option>`);
-  });
-  categoryTabs.innerHTML = ['all', ...categories].map(category =>
-    `<button class="tab ${category === 'all' ? 'active' : ''}" data-category="${category}">${category === 'all' ? 'Tất cả' : category}</button>`
-  ).join('');
-
-  categoryTabs.addEventListener('click', event => {
-    const button = event.target.closest('.tab');
-    if (!button) return;
-    selectedCategory = button.dataset.category;
-    categoryFilter.value = selectedCategory;
-    document.querySelectorAll('.tab').forEach(tab => tab.classList.toggle('active', tab === button));
-    renderProducts();
-  });
-}
-
-function getFilteredProducts() {
-  const keyword = searchInput.value.trim().toLowerCase();
-  return products.filter(product => {
-    const matchCategory = selectedCategory === 'all' || product.category === selectedCategory;
-    const matchSearch = product.name.toLowerCase().includes(keyword);
-    return matchCategory && matchSearch;
-  });
-}
-
-function renderProducts() {
-  const list = getFilteredProducts();
-  productGrid.innerHTML = list.map(product => `
-    <article class="product-card">
-      <div class="product-image">
-        <img src="${product.image}" alt="${product.name}" loading="lazy">
-        <span class="badge ${product.group}">${groupLabels[product.group]}</span>
-      </div>
-      <div class="product-info">
-        <small>${product.category}</small>
-        <h3>${product.name}</h3>
-        <div class="price"><strong>${formatPrice(product.price)}</strong> <del>${formatPrice(product.oldPrice)}</del></div>
-        <button class="add-btn" data-id="${product.id}">+ Thêm vào giỏ</button>
-      </div>
-    </article>
-  `).join('');
-  emptyMessage.classList.toggle('hidden', list.length > 0);
-
-  document.querySelectorAll('.add-btn').forEach(button => {
-    button.addEventListener('click', () => addToCart(Number(button.dataset.id)));
-  });
-}
-
-searchInput.addEventListener('input', renderProducts);
-categoryFilter.addEventListener('change', event => {
-  selectedCategory = event.target.value;
-  document.querySelectorAll('.tab').forEach(tab => tab.classList.toggle('active', tab.dataset.category === selectedCategory));
-  renderProducts();
-});
-
-initCategories();
-renderProducts();
+function initCategories(){const categories=[...new Set(products.map(p=>p.category))];categories.forEach(c=>categoryFilter.insertAdjacentHTML('beforeend',`<option value="${c}">${c}</option>`));categoryTabs.innerHTML=['all',...categories].map(c=>`<button class="tab ${c==='all'?'active':''}" data-category="${c}">${c==='all'?'Tất cả':c}</button>`).join('');categoryTabs.addEventListener('click',e=>{const b=e.target.closest('.tab');if(!b)return;selectedCategory=b.dataset.category;categoryFilter.value=selectedCategory;document.querySelectorAll('.tab').forEach(t=>t.classList.toggle('active',t===b));renderProducts()})}
+function getFilteredProducts(){const keyword=searchInput.value.trim().toLowerCase();let list=products.filter(p=>(selectedCategory==='all'||p.category===selectedCategory)&&p.name.toLowerCase().includes(keyword));if(sortFilter.value==='priceAsc')list.sort((a,b)=>a.price-b.price);if(sortFilter.value==='priceDesc')list.sort((a,b)=>b.price-a.price);if(sortFilter.value==='name')list.sort((a,b)=>a.name.localeCompare(b.name,'vi'));return list}
+function renderProducts(){const list=getFilteredProducts();resultCount.textContent=`${list.length} món`;productGrid.innerHTML=list.map(p=>`<article class="product-card"><div class="product-image"><img src="${p.image}" alt="${p.name}" loading="lazy"><span class="badge ${p.group}">${groupLabels[p.group]}</span><button class="favorite ${favorites.includes(p.id)?'active':''}" data-favorite="${p.id}" aria-label="Yêu thích">${favorites.includes(p.id)?'♥':'♡'}</button></div><div class="product-info"><small>${p.category}</small><h3>${p.name}</h3><p class="product-description">${p.description}</p><div class="rating">★★★★★ <span>${p.rating}</span></div><div class="price"><strong>${formatPrice(p.price)}</strong><del>${formatPrice(p.oldPrice)}</del></div><button class="add-btn" data-id="${p.id}">+ Thêm vào giỏ</button><button class="quick-btn" data-detail="${p.id}">Xem chi tiết</button></div></article>`).join('');emptyMessage.classList.toggle('hidden',list.length>0);document.querySelectorAll('.add-btn').forEach(b=>b.addEventListener('click',()=>addToCart(Number(b.dataset.id))));document.querySelectorAll('[data-detail]').forEach(b=>b.addEventListener('click',()=>showDetail(Number(b.dataset.detail))));document.querySelectorAll('[data-favorite]').forEach(b=>b.addEventListener('click',()=>toggleFavorite(Number(b.dataset.favorite))))}
+function toggleFavorite(id){favorites=favorites.includes(id)?favorites.filter(x=>x!==id):[...favorites,id];localStorage.setItem('burgerbox-favorites',JSON.stringify(favorites));favoriteCount.textContent=favorites.length;renderProducts();showToast(favorites.includes(id)?'❤️ Đã thêm vào yêu thích':'Đã bỏ khỏi yêu thích')}
+function showDetail(id){const p=products.find(x=>x.id===id);if(!p)return;detailContent.innerHTML=`<div class="detail-layout"><img src="${p.image}" alt="${p.name}"><div><span class="badge ${p.group}">${groupLabels[p.group]}</span><h2>${p.name}</h2><p>${p.description}</p><div class="rating">★★★★★ ${p.rating}/5</div><div class="detail-price">${formatPrice(p.price)} <del>${formatPrice(p.oldPrice)}</del></div><button class="btn full" data-detail-add="${p.id}">+ Thêm vào giỏ</button></div></div>`;detailModal.classList.remove('hidden');detailContent.querySelector('[data-detail-add]').addEventListener('click',()=>{addToCart(id);detailModal.classList.add('hidden')})}
+function showToast(message){const toast=document.getElementById('toast');toast.textContent=message;toast.classList.add('show');clearTimeout(window.toastTimer);window.toastTimer=setTimeout(()=>toast.classList.remove('show'),2200)}
+searchInput.addEventListener('input',renderProducts);categoryFilter.addEventListener('change',e=>{selectedCategory=e.target.value;document.querySelectorAll('.tab').forEach(t=>t.classList.toggle('active',t.dataset.category===selectedCategory));renderProducts()});sortFilter.addEventListener('change',renderProducts);document.getElementById('closeDetail').addEventListener('click',()=>detailModal.classList.add('hidden'));detailModal.addEventListener('click',e=>{if(e.target===detailModal)detailModal.classList.add('hidden')});document.getElementById('favoriteButton').addEventListener('click',()=>{searchInput.value='';selectedCategory='all';categoryFilter.value='all';sortFilter.value='default';const onlyFavorites=products.filter(p=>favorites.includes(p.id));resultCount.textContent=`${onlyFavorites.length} món yêu thích`;productGrid.innerHTML=onlyFavorites.map(p=>`<article class="product-card"><div class="product-image"><img src="${p.image}" alt="${p.name}"><span class="badge hot">Yêu thích</span></div><div class="product-info"><small>${p.category}</small><h3>${p.name}</h3><p class="product-description">${p.description}</p><div class="price"><strong>${formatPrice(p.price)}</strong></div><button class="add-btn" data-id="${p.id}">+ Thêm vào giỏ</button></div></article>`).join('');if(!onlyFavorites.length)productGrid.innerHTML='<p class="empty">Bạn chưa có món yêu thích nào ❤️</p>';document.querySelectorAll('.add-btn').forEach(b=>b.addEventListener('click',()=>addToCart(Number(b.dataset.id))))});
+initCategories();favoriteCount.textContent=favorites.length;renderProducts();
