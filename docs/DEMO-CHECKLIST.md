@@ -51,10 +51,11 @@ Tài khoản demo: `admin@burgerbox.local` / `admin123`
 ## 5. Trạng thái sau rà soát mã nguồn — 17/10/2026
 
 ### Đã kiểm tra tĩnh
-- [x] Script đăng ký dùng `getElementById` để lấy trường nhập.
+- [x] Script đăng ký dùng `getElementById` để lấy trường nhập và đã kiểm thử handler bằng DOM giả lập.
 - [x] Các file JavaScript chính và script inline đăng ký qua kiểm tra cú pháp.
-- [x] Form liên hệ có vùng lỗi tạo động và trạng thái `aria-invalid`.
-- [x] Logic bộ lọc tồn kho `all` / `low` / `out` được sửa và rà soát.
+- [x] Logic đăng ký/đăng nhập: tạo tài khoản, email trùng, thông tin đúng/sai và tài khoản khóa.
+- [x] Form liên hệ có vùng lỗi tạo động và trạng thái `aria-invalid`; đã kiểm thử bỏ trống, email sai và dữ liệu hợp lệ bằng DOM giả lập.
+- [x] Logic bộ lọc tồn kho `all` / `low` / `out` được sửa và kiểm thử bảng chân trị.
 
 ### Chưa chạy trong trình duyệt thật
 - [ ] Chạy toàn bộ luồng Storefront, Customer và Admin.
