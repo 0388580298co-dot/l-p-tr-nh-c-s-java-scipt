@@ -46,3 +46,23 @@ Các bước dưới đây chưa được đánh dấu PASS vì chưa chạy tro
 ## 5. Giới hạn
 
 Đây là website frontend dùng LocalStorage. Kết quả kiểm tra tĩnh không thay thế kiểm thử end-to-end trong trình duyệt và không chứng minh tính an toàn cho hệ thống production. Không ghi PASS cho các bước chưa thực sự chạy.
+
+
+## 6. Kết quả kiểm thử logic có thực thi
+
+Đã chạy các kiểm thử logic cô lập bằng JavaScript với DOM/LocalStorage giả lập (không phải kiểm thử trình duyệt end-to-end):
+
+| Ca kiểm thử | Kết quả |
+|---|---|
+| Form liên hệ bỏ trống họ tên hiển thị lỗi inline | PASS |
+| Form liên hệ nhập email sai hiển thị lỗi inline | PASS |
+| Form liên hệ với các trường hợp lệ hiển thị thông báo thành công | PASS |
+| Form đăng ký lấy dữ liệu theo ID và gọi hàm đăng ký | PASS |
+| Đăng ký tài khoản mới | PASS |
+| Từ chối email đã tồn tại không phân biệt chữ hoa/thường | PASS |
+| Đăng nhập bằng thông tin chính xác | PASS |
+| Từ chối mật khẩu sai | PASS |
+| Từ chối tài khoản bị khóa | PASS |
+| Ma trận bộ lọc tồn kho all/low/out | PASS |
+
+Các bài kiểm thử này kiểm tra logic liên quan đã sửa và xác nhận luồng xác thực ở mức hàm. Chúng không thay thế việc mở website trong trình duyệt, kiểm tra layout, thao tác modal hoặc kiểm thử toàn bộ luồng mua hàng.
