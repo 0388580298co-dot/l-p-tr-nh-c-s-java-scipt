@@ -46,3 +46,19 @@ Tài khoản demo: `admin@burgerbox.local` / `admin123`
 5. Cart dùng LocalStorage để giữ dữ liệu sau reload.
 6. Countdown dùng JavaScript timer.
 7. Các chức năng mở rộng được xây thêm nhưng không thay thế yêu cầu ASM.
+
+
+## 5. Trạng thái sau rà soát mã nguồn — 17/10/2026
+
+### Đã kiểm tra tĩnh
+- [x] Script đăng ký dùng `getElementById` để lấy trường nhập.
+- [x] Các file JavaScript chính và script inline đăng ký qua kiểm tra cú pháp.
+- [x] Form liên hệ có vùng lỗi tạo động và trạng thái `aria-invalid`.
+- [x] Logic bộ lọc tồn kho `all` / `low` / `out` được sửa và rà soát.
+
+### Chưa chạy trong trình duyệt thật
+- [ ] Chạy toàn bộ luồng Storefront, Customer và Admin.
+- [ ] Xác nhận các tương tác không phát sinh lỗi Console.
+- [ ] Chụp/ghi nhận bằng chứng thực thi để nộp cùng bài.
+
+Chi tiết xem `docs/TEST-RESULTS.md`. Các mục chưa chạy không được coi là PASS.
