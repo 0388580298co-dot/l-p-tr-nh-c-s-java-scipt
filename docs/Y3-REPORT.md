@@ -147,3 +147,13 @@ Các chức năng trên là lựa chọn trình bày dựa trên mã nguồn hi�
 - Lớp: **[Điền lớp]**
 - Môn học: **Lập trình cơ sở với JavaScript**
 - Đề tài: **BurgerBox — Website bán đồ ăn nhanh**
+
+
+### Bổ sung kết quả kiểm thử logic
+
+Ngoài kiểm tra cú pháp, đã chạy kiểm thử logic cô lập với DOM và LocalStorage giả lập:
+- Form liên hệ: bỏ trống họ tên và email sai đều hiển thị lỗi; dữ liệu hợp lệ hiển thị thông báo thành công.
+- Đăng ký/đăng nhập: đăng ký mới, từ chối email trùng, đăng nhập đúng, từ chối mật khẩu sai và từ chối tài khoản bị khóa.
+- Bộ lọc tồn kho: xác minh các trường hợp all/low/out với mức tồn kho 20, 5, 1 và 0.
+
+Các ca trên PASS. Kiểm thử giao diện end-to-end trong trình duyệt thật vẫn chưa chạy; không coi đó là kết quả PASS.
