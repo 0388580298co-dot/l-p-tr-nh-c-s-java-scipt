@@ -105,3 +105,45 @@ Dữ liệu demo được lưu ở LocalStorage với các key chính:
 
 ## 11. Kết luận
 BurgerBox đáp ứng các yêu cầu cốt lõi của ASM Lập trình cơ sở với JavaScript và mở rộng thành một mô hình website bán đồ ăn nhanh có luồng khách hàng – đơn hàng – quản trị tương đối hoàn chỉnh. Các chức năng mở rộng được tách khỏi nhóm yêu cầu bắt buộc để thuận tiện trình bày khi bảo vệ bài.
+
+
+## 12. Sơ đồ luồng chức năng
+
+```mermaid
+flowchart TD
+    A[Trang chủ BurgerBox] --> B[Hiển thị / tìm kiếm / lọc sản phẩm]
+    B --> C[Thêm món vào giỏ]
+    C --> D[LocalStorage: giỏ hàng]
+    D --> E[Checkout và kiểm tra dữ liệu]
+    E --> F[Tạo đơn hàng]
+    F --> G[LocalStorage: đơn hàng]
+    G --> H[Trang tài khoản: lịch sử đơn]
+    G --> I[Admin: quản lý đơn hàng]
+    J[Đăng ký / đăng nhập] --> K[LocalStorage: người dùng và phiên]
+    K --> H
+    K --> I
+```
+
+## 13. Ba chức năng tự đề xuất và lý do
+
+1. **Tìm kiếm, lọc và sắp xếp sản phẩm:** giảm thời gian tìm món, cho phép so sánh theo giá và danh mục.
+2. **Danh sách yêu thích:** giúp người dùng lưu món muốn xem lại; trạng thái được lưu trong LocalStorage.
+3. **Quick View và checkout có mã giảm giá:** rút ngắn thao tác xem thông tin và mô phỏng quy trình đặt món gần với cửa hàng thực tế.
+
+Các chức năng trên là lựa chọn trình bày dựa trên mã nguồn hiện có; khi bảo vệ cần chạy demo và chỉ ra file xử lý tương ứng.
+
+## 14. Kết quả kiểm tra mã nguồn
+
+- Đã sửa truy cập trường form đăng ký sang `document.getElementById`.
+- Đã bổ sung hiển thị lỗi động cho form liên hệ và CSS tương ứng.
+- Đã sửa điều kiện bộ lọc tồn kho Admin.
+- Kiểm tra cú pháp thành công cho các file JavaScript chính và script inline đăng ký.
+- Chưa thực hiện kiểm thử end-to-end trong trình duyệt; cần hoàn thành checklist thủ công trước khi xác nhận toàn bộ website đạt.
+
+## 15. Thông tin sinh viên
+
+- Họ và tên: **[Điền họ tên sinh viên]**
+- Mã sinh viên: **[Điền mã sinh viên]**
+- Lớp: **[Điền lớp]**
+- Môn học: **Lập trình cơ sở với JavaScript**
+- Đề tài: **BurgerBox — Website bán đồ ăn nhanh**
