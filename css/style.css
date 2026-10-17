@@ -13,3 +13,31 @@
 @media(max-width:1050px){.nav{gap:14px}.nav nav{gap:14px}.nav-actions{gap:7px}.login-link,.logout-link{padding:0 10px}.cart-button{padding:0 11px}}
 @media(max-width:760px){.nav{height:68px;gap:8px}.nav nav{display:none}.logo{font-size:19px;gap:4px;letter-spacing:-.7px}.logo-mark{width:29px;height:29px;font-size:17px;border-radius:8px}.nav-actions{gap:6px}.login-link,.logout-link{min-height:38px;padding:0 10px;font-size:12px}.icon-button{display:inline-flex;min-width:42px;min-height:38px;padding:0 9px;font-size:16px}.cart-button{min-height:38px;padding:0 10px;gap:6px}.cart-button span{display:none}.cart-button b{min-width:20px;height:20px;font-size:11px}.topbar-inner{min-height:32px;justify-content:center;overflow:hidden}.topbar-inner span:first-child{display:none}.topbar-inner span:last-child{font-size:11px}}
 @media(max-width:380px){.logo{font-size:16px}.logo-mark{width:26px;height:26px}.login-link,.logout-link{padding:0 7px;font-size:11px}.nav-actions{gap:4px}.icon-button{min-width:36px;padding:0 7px}.cart-button{padding:0 8px}}
+
+/* Final overflow guard for the main navigation */
+.header,.header .container,.nav,.nav-actions{min-width:0;max-width:100%}
+.nav{width:min(1180px,92%);margin-inline:auto}
+.nav-actions{flex:0 1 auto}
+.nav nav{flex:0 1 auto;min-width:0}
+@media(max-width:760px){
+  .nav{width:94%;justify-content:space-between;gap:6px}
+  .nav nav{display:none!important}
+  .nav-actions{gap:5px;flex-shrink:1}
+  .login-link,.logout-link{min-height:36px;padding:0 8px;font-size:11px}
+  .icon-button{display:inline-flex!important;min-width:36px;min-height:36px;padding:0 7px}
+  .cart-button{min-height:36px;padding:0 9px;gap:5px}
+  .cart-button span{display:none!important}
+  .cart-button b{min-width:19px;height:19px;padding:0 5px;font-size:11px}
+  .topbar-inner{width:100%;padding-inline:8px;justify-content:center;overflow:hidden}
+  .topbar-inner span:first-child{display:none!important}
+  .topbar-inner span:last-child{display:block;max-width:100%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;text-align:center;font-size:11px}
+}
+@media(max-width:390px){
+  .nav{width:96%;gap:4px}
+  .logo{font-size:15px;gap:3px}
+  .logo-mark{width:25px;height:25px;font-size:15px}
+  .login-link,.logout-link{padding:0 6px;font-size:10px}
+  .nav-actions{gap:3px}
+  .icon-button{min-width:32px;padding:0 5px}
+  .cart-button{padding:0 7px}
+}
