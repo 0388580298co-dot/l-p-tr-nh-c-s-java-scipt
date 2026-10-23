@@ -40,7 +40,7 @@ BurgerBox/
 ```
 
 ## 4. Chức năng khách hàng
-- 12 món fast food dạng Array of Objects.
+- 47 món fast food dạng Array of Objects (12 món ban đầu và 35 món bổ sung).
 - Burger, Gà rán, Ăn kèm, Đồ uống, Combo.
 - Nhóm Món mới / Bán chạy / Giảm giá.
 - Tìm kiếm theo tên.
