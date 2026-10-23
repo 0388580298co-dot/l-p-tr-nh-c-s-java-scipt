@@ -39,6 +39,9 @@ BurgerBox là website bán đồ ăn nhanh được xây dựng bằng HTML5, CS
 - Quản lý đánh giá.
 - Cài đặt tên cửa hàng, phí giao hàng và trạng thái cửa hàng.
 
+## 3.1. Cập nhật danh mục sản phẩm
+Danh mục dữ liệu mặc định hiện có **47 sản phẩm** (12 sản phẩm ban đầu và 35 sản phẩm bổ sung), thuộc các nhóm Burger, Gà rán, Ăn kèm, Đồ uống và Combo. Mỗi sản phẩm có mã, tên, giá bán, giá cũ, danh mục, nhóm hiển thị, điểm đánh giá, tồn kho, mô tả và đường dẫn ảnh. Dữ liệu được khai báo trong `js/data.js` và lưu bằng LocalStorage. Cơ chế di trú bổ sung những ID mặc định còn thiếu cho dữ liệu cũ trong lần di trú đầu tiên, thay vì ghi đè toàn bộ danh sách đã lưu. Báo cáo chi tiết: `docs/BAO-CAO-BO-SUNG-35-SAN-PHAM.md`.
+
 ## 4. Phân tích một số hàm JavaScript chính
 | Chức năng | Hàm/Module | Vai trò |
 |---|---|---|
